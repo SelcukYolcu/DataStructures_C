@@ -4,6 +4,7 @@
 
 int main()
 {
+    // Test Methods
     node *root = createList(5);
     root = extendList(root, 3);
     root = extendList(NULL, 3);
