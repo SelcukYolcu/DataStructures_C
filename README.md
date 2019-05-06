@@ -4,7 +4,7 @@ With this repository the basic simplified methods are published for Data Structu
 ## Content:
 - Linked List
     * Singly Linked List
-    * Cicular Linked List
+    * Circular Linked List
     * Doubly Linked List
 - Stack
     * Array
