@@ -14,6 +14,3 @@ With this repository the basic simplified methods are published for Data Structu
     * Dequeue
 - Decision Trees
     * Binary Search Tree
-
-
-Published by Selçuk YOLCU
