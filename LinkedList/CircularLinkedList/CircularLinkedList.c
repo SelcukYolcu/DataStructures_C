@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "SinglyLinkedList.h"
+#include "CircularLinkedList.h"
 
-int printNode(node* root){
+int printNode(const node* root){
     // Print all List index by index
     node *iter = root;
     if (!iter){
@@ -10,9 +10,9 @@ int printNode(node* root){
         return -1;
     }
     printf("Linked List Printing... :\n");
-    while(iter->next != NULL){
+    while(iter->next != root){
         printf("%d -> ", iter -> val);
-        iter = iter -> next;
+        iter= iter -> next;
     }
     printf("%d...\n", iter -> val);
     return 0;
@@ -24,12 +24,12 @@ node* createList(int size){
     node* iter = root;
     int val = 0; // to set Node value
     iter -> val = ++val * 10; // value is according to preference
-    iter -> next = NULL;
+    iter -> next = root;
     while(--size){
-        iter -> next = (node*)malloc(sizeof(node));
-        iter  = iter -> next;
+        iter->next= (node*)malloc(sizeof(node));
+        iter=iter->next;
         iter -> val = ++val * 10; // value is according to preference
-        iter -> next = NULL;
+        iter->next = root;
     }
     printf("New Created ");
     printNode(root);
@@ -45,25 +45,22 @@ node* append(node* root, int val){
         printf("New List is creating ...\n");
         iter = (node*)malloc(sizeof(node));
         iter -> val = val; 
-        iter -> next = NULL;
-        root = iter;
+        iter -> next = iter;
         printf("New Created ");
-	printNode(root);
-        return root;
-
+        printNode(iter);
+        return iter;
     }
-    while(iter->next != NULL)
+    while(iter->next != root)
         iter=iter->next; // go end of the list
     // add the end of the list 
     iter->next = (node*)malloc(sizeof(node));
     iter = iter->next;
     iter-> val = val;
-    iter-> next = NULL;
+    iter-> next = root;
     printf("%d has been added to the end of list\n", val);
     printNode(root);
     return root;
 }
-
 
 node* extendList(node* root, int size){
     // Add the Specified Number of Nodes at the End of the List
@@ -75,19 +72,20 @@ node* extendList(node* root, int size){
         printf("New List is creating ...\n");
         iter = (node*)malloc(sizeof(node));
         iter -> val = ++val; // value is according to preference 
-        iter -> next = NULL;
+        iter -> next = iter;
         root = iter;
         size--;
         printf("New Created ");
     }
-    while(iter->next != NULL)
+
+    while(iter->next != root)
         iter=iter->next; // go end of the list
-    while(size--){ 
-        // add the end of the list 
+    while(size--){
+        // go end of the list
         iter->next = (node*)malloc(sizeof(node));
         iter = iter->next;
         iter-> val = ++val; // value is according to preference 
-        iter-> next = NULL;
+        iter-> next = root;
     }
     printf("The list has been extended from the end\n");
     printNode(root);
@@ -104,8 +102,8 @@ node* insertSequentially(node* root, int val){
         printf("Given root adress is NULL\n");
         iter = (node *)malloc(sizeof(node));
         iter -> val = val;
-        iter -> next = NULL;
-        printf("New List has been created\n");
+        iter -> next = iter;
+        printf("New List has been created for %d \n", val);
         return iter;
     }
     else if(val < iter -> val){
@@ -113,12 +111,16 @@ node* insertSequentially(node* root, int val){
         temp = (node*)malloc(sizeof(node));
         temp -> next = iter;
         temp -> val = val;
-        printf("%d has been added to head of list", val);
+        printf("%d has been added to head of list\n", val);
+        // change tail adress
+        while(iter -> next != root)
+            iter = iter -> next;
+        iter -> next = temp;
         return temp;
     }
     else{
-        // find index to add
-        while((iter -> next) && (val > (iter -> next -> val)))
+        //add if next is null or bigger
+        while((iter -> next != root) && val > (iter -> next -> val))
             //add if next is null or bigger
             iter = iter -> next;
         temp = (node *)malloc(sizeof(node));
@@ -137,21 +139,25 @@ node* deleteVal(node* root, int val){
     node* temp;
     
     if(!iter){
-        printf("Error: The root adres is NULL for value of %d\n", val);
+        printf("Error: The given root adres is NULL \n");
         return iter;
     }
     else if(iter -> val == val){
         // check first index of list
-        temp = iter;
-        iter = iter -> next;
-        free(temp);
-        printf("%d is deleted from the head of list\n", val);
-        return iter;
+        temp = iter -> next;
+        free(iter);
+        iter = temp;
+        printf("%d is deleted from the head of list \n", val);
+        // change tail adress
+        while(iter -> next != root)
+            iter = iter -> next;
+        iter -> next = temp;
+        return temp;
     }
     else{
-        while((iter -> next) && (iter -> next -> val != val))
+        while((iter -> next != root) && (iter -> next -> val != val))
             iter = iter -> next;
-        if(!(iter -> next))
+        if((iter -> next) == root)
             printf("%d did not be found in list\n", val);
         else{
             temp=iter -> next;
@@ -161,4 +167,23 @@ node* deleteVal(node* root, int val){
         }
         return root;
     }
+}
+
+node* deleteAll(node* root){
+    //delete all list
+    node* iter = root;
+    node* temp;
+    if (!iter){
+        printf("Given root adress is NULL, It can not be deleted. \n");
+        return NULL;
+    }
+    //delete index by index
+    while(iter-> next != root){
+        temp = iter;
+        iter = iter -> next;
+        free(temp);
+    }
+    free(iter);
+    printf("List has been deleted.\n");
+    return NULL;
 }
