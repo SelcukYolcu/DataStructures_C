@@ -8,10 +8,10 @@ typedef struct n{
     struct n* next;
 }node;
 
-int printNode(const node* root);
-node* createList(int size);
+int printNode(node* const root);
+node* createList(unsigned int size);
 node* append(node* root, int val);
-node* extendList(node* root, int size);
+node* extendList(node* root, unsigned int size);
 node* insertSequentially(node* root, int val);
 node* deleteVal(node* root, int val);
 node* deleteAll(node* root);

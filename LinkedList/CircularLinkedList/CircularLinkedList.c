@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "CircularLinkedList.h"
 
-int printNode(const node* root){
+int printNode(node* const root){
     // Print all List index by index
     node *iter = root;
     if (!iter){
@@ -18,7 +18,7 @@ int printNode(const node* root){
     return 0;
 }
 
-node* createList(int size){
+node* createList(unsigned int size){
     // Create New Linked List of Specified Size
     node* root = (node*)malloc(sizeof(node));
     node* iter = root;
@@ -62,7 +62,7 @@ node* append(node* root, int val){
     return root;
 }
 
-node* extendList(node* root, int size){
+node* extendList(node* root, unsigned int size){
     // Add the Specified Number of Nodes at the End of the List
     node* iter= root;
     int val = 0; // to set Node value
@@ -81,7 +81,7 @@ node* extendList(node* root, int size){
     while(iter->next != root)
         iter=iter->next; // go end of the list
     while(size--){
-        // go end of the list
+        // add end of the list
         iter->next = (node*)malloc(sizeof(node));
         iter = iter->next;
         iter-> val = ++val; // value is according to preference 
@@ -106,7 +106,7 @@ node* insertSequentially(node* root, int val){
         printf("New List has been created for %d \n", val);
         return iter;
     }
-    else if(val < iter -> val){
+    else if(val <= iter -> val){
         // check first index of list to add
         temp = (node*)malloc(sizeof(node));
         temp -> next = iter;
@@ -119,9 +119,9 @@ node* insertSequentially(node* root, int val){
         return temp;
     }
     else{
-        //add if next is null or bigger
+        //add if node is end of list or value is bigger
         while((iter -> next != root) && val > (iter -> next -> val))
-            //add if next is null or bigger
+            //add if node is end of list or value is bigger
             iter = iter -> next;
         temp = (node *)malloc(sizeof(node));
         temp -> val = val;
