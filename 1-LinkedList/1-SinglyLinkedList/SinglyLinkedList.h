@@ -10,9 +10,9 @@ typedef struct n{
 }node;
 
 int printNode(node *root);
-node* createList(int size);
+node* createList(unsigned int size);
 node* append(node* root, int val);
-node* extendList(node* root, int size);
+node* extendList(node* root, unsigned int size);
 node* insertSequentially(node* root, int val);
 node* deleteVal(node* root, int val);
 

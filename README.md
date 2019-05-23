@@ -2,15 +2,13 @@
 ## Be an Acrobat on Memory Management
 With this repository the basic simplified methods are published for Data Structures in C programming language
 ## Content:
-- Linked List
-    * Singly Linked List
-    * Circular Linked List
-    * Doubly Linked List
-- Stack
-    * Array
-    * Linked List
-- Queue
-    * Engueue
-    * Dequeue
-- Decision Trees
+- 1-Linked List
+    * 1-Singly Linked List
+    * 2-Circular Linked List
+    * 3-Doubly Linked List
+- 2-Stack
+    * Pop, Push
+- 3-Queue
+    * Engueue, Dequeue
+- 4-Decision Trees
     * Binary Search Tree

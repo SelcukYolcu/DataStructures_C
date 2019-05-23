@@ -18,7 +18,7 @@ int printNode(node* root){
     return 0;
 }
 
-node* createList(int size){
+node* createList(unsigned int size){
     // Create New Linked List of Specified Size
     node* root = (node*)malloc(sizeof(node));
     node* iter = root;
@@ -65,7 +65,7 @@ node* append(node* root, int val){
 }
 
 
-node* extendList(node* root, int size){
+node* extendList(node* root, unsigned int size){
     // Add the Specified Number of Nodes at the End of the List
     node* iter= root;
     int val = 0; // to set Node value
