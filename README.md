@@ -7,7 +7,8 @@ With this repository the basic simplified methods are published for Data Structu
     * 2-Circular Linked List
     * 3-Doubly Linked List
 - 2-Stack
-    * Pop, Push
+    * 1-Array
+    * 2-Linked List
 - 3-Queue
     * Engueue, Dequeue
 - 4-Decision Trees
