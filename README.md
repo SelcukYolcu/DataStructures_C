@@ -1,6 +1,12 @@
 # **__DataStructures_C__**
-## Be an Acrobat on Memory Management
-With this repository the basic simplified methods are published for Data Structures in C programming language
+### The Data Structure algorithms are used to manage memory, organise data and increase of efficiency
+
+### In this repository the basic simplified methods are published for Data Structures in C programming language
+
+### All steps are explained by images to easily show How methods work
+
+### All of the Code are published as Open Source
+
 ## Content:
 - 1-Linked List
     * 1-Singly Linked List
@@ -13,3 +19,5 @@ With this repository the basic simplified methods are published for Data Structu
     * Engueue, Dequeue
 - 4-Decision Trees
     * Binary Search Tree
+
+Published by Selçuk Yolcu
